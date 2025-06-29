@@ -1,0 +1,49 @@
+{% extends 'inicio/encabezado.html' %}
+{% load static %}
+
+{% block titulo %}Página Principal{% endblock %}
+
+{% block imagen %}{% static 'inicio/images/home.png' %}{% endblock %}
+
+{% block texto %}Principal <span>Inicio</span>{% endblock %}
+
+
+{% block encabezado_pagina %}
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Alumnos <small>Lista de Alumnos</small></h3>
+        </div>
+    </div>
+{% endblock encabezado_pagina %}
+
+
+{% block ruta %}
+    <li class="active">Inicio</li>
+{% endblock ruta %}
+
+
+{% block formulario_contenido %}
+    <p>Este es el contenido de la página principal.</p>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>MAtricula</th>
+                <th>Nombre</th>
+                <th>Carrera</th>
+                <th>Turno</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    <img src="" alt="" class="img-media">
+                </td>
+                <td class="text-semibold">UTM651515</td>
+                <td class="muted"></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock formulario_contenido %}
