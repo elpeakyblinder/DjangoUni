@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,13 +67,23 @@ WSGI_APPLICATION = 'prueba.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Prueba',
+        'USER' : 'root',
+        'PASSWORD' : '',
+        'HOST' : 'localhost',
+        'PORT' : '3307',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -96,23 +107,106 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = 'es-mx'
+TIME_ZONE = 'America/Mexico_City' # También es buena idea ajustar la zona horaria
 USE_I18N = True
+USE_L10N = True
+USE_TZ = False
 
-USE_TZ = True
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
-STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    },
+    'actividad_editor': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+        ],
+    }
+}
+
+JAZZMIN_SETTINGS = {
+    # Título que aparece en la pestaña del navegador y en la página de login
+    "site_title": "Panel de Administración",
+
+    # Título en la parte superior izquierda de la barra de navegación
+    "site_header": "Mi Proyecto",
+
+    # Logo para la página de login (puedes poner la ruta a tu logo)
+    # ej: "images/logo.png" (debe estar en tu carpeta static)
+    "login_logo": None,
+
+    # Texto del "copyright" en el pie de página
+    "copyright": "Mi Proyecto Ltd.",
+
+    # --- AJUSTES DE LA INTERFAZ (UI) ---
+    # Aquí es donde aplicamos tu paleta de colores neuromórfica
+    "ui_tweaks": {
+        # Usamos un tema general claro para el fondo, como en tu paleta (--bg-primary)
+        "theme": "default",
+
+        # Hacemos que la barra de navegación use tu color de marca azul (--blue-500)
+        "navbar": "navbar-dark navbar-primary",
+
+        # Texto claro para que contraste con la barra de navegación oscura
+        "navbar_text": "text-light",
+        "navbar_links_text": "text-light",
+
+        # La barra lateral también usará el color de marca azul
+        "sidebar": "sidebar-dark-primary",
+        "sidebar_text": "text-light",
+        "sidebar_links_text": "text-light",
+        "sidebar_brand_text": "text-light",
+        "sidebar_nav_child_indent": True,
+        "sidebar_nav_compact_style": True,
+
+        # Clases para los botones, usando tus colores de estado
+        "button_classes": {
+            "primary": "btn-primary",    # Azul
+            "secondary": "btn-secondary",  # Gris
+            "info": "btn-info",          # Azul claro
+            "warning": "btn-warning",      # Amarillo
+            "danger": "btn-danger",      # Rojo
+            "success": "btn-success"     # Verde
+        },
+
+        # Esquinas redondeadas para un look más suave, como en el neuromorfismo
+        "rounded_corners": True,
+        
+        # Ocultar el selector de temas si no quieres que los usuarios lo cambien
+        "show_ui_builder": False
+    },
+    
+    # --- ICONOS ---
+    # Usamos FontAwesome 5 para los iconos
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "registros.alumnos": "fas fa-user-graduate",
+        "registros.comentario": "fas fa-comments",
+        "registros.comentariocontacto": "fas fa-envelope-open-text",
+        "cursos.curso": "fas fa-book-open",
+        "cursos.actividad": "fas fa-tasks",
+    },
+}

@@ -1,0 +1,55 @@
+{% extends 'registros/encabezado.html' %}
+{% load static %}
+
+{% block titulo %}Consulta de Comentarios{% endblock %}
+
+{% block imagen %}{% static 'images/home.png' %}{% endblock %}
+
+{% block texto %}Consulta <span>Comentarios</span>{% endblock %}
+
+
+{% block encabezado_pagina %}
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Comentarios Registrados <small>Lista de comentarios</small></h3>
+        </div>
+    </div>
+{% endblock encabezado_pagina %}
+
+
+{% block ruta %}
+    <li class="active">Consulta de Comentarios</li>
+{% endblock ruta %}
+
+
+{% block formulario_contenido %}
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Mensaje</th>
+                <th>.</th>
+                <th>.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comentario in comentarios %}
+                <tr>
+                    <td class="text-semibold">{{ comentario.usuario }}</td>
+                    <td class="muted">{{ comentario.mensaje }}</td>
+                    
+                    <td class="text-center">
+                        <a href="{%url 'ConsultaIndividual' comentario.id%}">Editar</a>
+                    </td>
+                    <td class="text-center">
+                        <a href="{%url 'Eliminar' comentario.id%}">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No hay comentarios registrados.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock formulario_contenido %}

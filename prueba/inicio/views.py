@@ -1,9 +1,10 @@
-from django.shortcuts import render
 
-# Create your views here.
+from django.shortcuts import render
+from registros.models import Alumnos 
 
 def principal(request):
-    return render(request, "inicio/principal.html")
+    alumnos = Alumnos.objects.all()
+    return render(request, "inicio/principal.html", {"alumnos": alumnos})
 
 def contacto(request):
     return render(request,"inicio/contacto.html")

@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <form action="" method="GET">
+            Nombre:
+            <input type="text" id="nombre" name="nombre">
+            <input type="submit" value="Buscar">
+        </form>
+    </body>
+    <h2> Resulto: {{nombre|safe}}</h2>
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var nombreBuscado = urlParams.get('nombre');
+        if (nombreBuscado) {
+            document.getElementById("resultado").innerHTML = "Resultado: " + nombreBuscado;
+        }
+    </script>
+</html>
